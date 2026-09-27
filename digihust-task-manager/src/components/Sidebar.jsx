@@ -13,11 +13,13 @@ function Sidebar() {
 
   return (
     <aside className="sidebar">
+      {/* Brand */}
       <div className="sidebar-logo">
-        <h2>DigiTask</h2>
-        <span>PRO</span>
+        <h2>Taskora</h2>
+        <span>WORKSPACE</span>
       </div>
 
+      {/* Navigation */}
       <nav className="sidebar-nav">
         <NavLink to="/dashboard">
           Dashboard
@@ -30,8 +32,13 @@ function Sidebar() {
         <NavLink to="/projects">
           Projects
         </NavLink>
+
+        <NavLink to="/team">
+          Team
+        </NavLink>
       </nav>
 
+      {/* Logout */}
       <button
         className="sidebar-logout"
         onClick={handleLogout}

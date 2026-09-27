@@ -16,13 +16,19 @@ function useLocalStorage(key, initialValue) {
 
   const updateValue = (newValue) => {
     try {
-      setValue(newValue);
+      const valueToStore =
+        typeof newValue === "function"
+          ? newValue(value)
+          : newValue;
+
+      setValue(valueToStore);
+
       localStorage.setItem(
         key,
-        JSON.stringify(newValue)
+        JSON.stringify(valueToStore)
       );
     } catch (error) {
-      console.error("Unable to save:", error);
+      console.error("Unable to save to localStorage:", error);
     }
   };
 

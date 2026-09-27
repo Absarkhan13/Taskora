@@ -5,60 +5,86 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import Login from "../pages/Login";
-import Dashboard from "../pages/Dashboard";
-import Tasks from "../pages/Tasks";
-import Projects from "../pages/Projects";
-import ProjectDetails from "../pages/ProjectDetails";
+import { lazy, Suspense } from "react";
+
 import ProtectedRoute from "./ProtectedRoute";
+import PageLoader from "../components/PageLoader";
+
+// Lazy loaded pages
+const Login = lazy(() => import("../pages/Login"));
+const Dashboard = lazy(() => import("../pages/Dashboard"));
+const Tasks = lazy(() => import("../pages/Tasks"));
+const Projects = lazy(() => import("../pages/Projects"));
+const ProjectDetails = lazy(() =>
+  import("../pages/ProjectDetails")
+);
+const Team = lazy(() => import("../pages/Team"));
 
 function AppRoutes() {
   return (
     <BrowserRouter>
-      <Routes>
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
 
-        {/* Public Route */}
-        <Route path="/login" element={<Login />} />
-
-        {/* Protected Routes */}
-        <Route element={<ProtectedRoute />}>
-
+          {/* Login */}
           <Route
-            path="/dashboard"
-            element={<Dashboard />}
+            path="/login"
+            element={<Login />}
           />
 
+          {/* Protected Routes */}
+          <Route element={<ProtectedRoute />}>
+            <Route
+              path="/dashboard"
+              element={<Dashboard />}
+            />
+
+            <Route
+              path="/tasks"
+              element={<Tasks />}
+            />
+
+            <Route
+              path="/projects"
+              element={<Projects />}
+            />
+
+            {/* Dynamic Project Route */}
+            <Route
+              path="/projects/:projectId"
+              element={<ProjectDetails />}
+            />
+
+            <Route
+              path="/team"
+              element={<Team />}
+            />
+          </Route>
+
+          {/* Default Route */}
           <Route
-            path="/tasks"
-            element={<Tasks />}
+            path="/"
+            element={
+              <Navigate
+                to="/dashboard"
+                replace
+              />
+            }
           />
 
+          {/* 404 Route */}
           <Route
-            path="/projects"
-            element={<Projects />}
+            path="*"
+            element={
+              <Navigate
+                to="/dashboard"
+                replace
+              />
+            }
           />
 
-          {/* Dynamic Route */}
-          <Route
-            path="/projects/:projectId"
-            element={<ProjectDetails />}
-          />
-
-        </Route>
-
-        {/* Default Route */}
-        <Route
-          path="/"
-          element={<Navigate to="/login" replace />}
-        />
-
-        {/* 404 */}
-        <Route
-          path="*"
-          element={<Navigate to="/login" replace />}
-        />
-
-      </Routes>
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

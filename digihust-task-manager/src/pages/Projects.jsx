@@ -1,75 +1,151 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const projects = [
-  {
-    id: 1,
-    name: "DigiTask Website",
-    description: "Build the main task management application.",
-    tasks: 12,
-    completed: 8,
-  },
-  {
-    id: 2,
-    name: "Portfolio Website",
-    description: "Create a modern personal portfolio.",
-    tasks: 8,
-    completed: 5,
-  },
-  {
-    id: 3,
-    name: "E-Commerce App",
-    description: "Develop a responsive shopping application.",
-    tasks: 20,
-    completed: 11,
-  },
-];
+import Sidebar from "../components/Sidebar";
+import PageHeader from "../components/PageHeader";
 
 function Projects() {
+  const navigate = useNavigate();
+
+  const projects = [
+    {
+      id: 1,
+      name: "Taskora Platform",
+      description:
+        "Smart task and project management workspace for teams.",
+      progress: 82,
+      tasks: 12,
+      completed: 9,
+      members: 5,
+      status: "In Progress",
+      statusClass: "progress",
+    },
+    {
+      id: 2,
+      name: "Marketing Website",
+      description:
+        "Modern responsive website for digital marketing.",
+      progress: 64,
+      tasks: 18,
+      completed: 11,
+      members: 4,
+      status: "In Progress",
+      statusClass: "progress",
+    },
+    {
+      id: 3,
+      name: "Mobile Application",
+      description:
+        "Cross-platform mobile application project.",
+      progress: 42,
+      tasks: 24,
+      completed: 10,
+      members: 6,
+      status: "Planning",
+      statusClass: "planning",
+    },
+  ];
+
   return (
-    <div className="page-content">
-      <h1>Projects</h1>
+    <div className="app-layout">
+      <Sidebar />
 
-      <p className="page-description">
-        Manage your projects and track their progress.
-      </p>
+      <main className="main-content">
+        <PageHeader
+          title="Projects"
+          description="Manage and monitor your projects."
+        />
 
-      <div className="projects-grid">
-        {projects.map((project) => {
-          const progress = Math.round(
-            (project.completed / project.tasks) * 100
-          );
+        <div className="projects-summary">
+          <div>
+            <strong>{projects.length}</strong>
+            <span>Active Projects</span>
+          </div>
 
-          return (
-            <div className="project-card" key={project.id}>
+          <div>
+            <strong>54</strong>
+            <span>Total Tasks</span>
+          </div>
+
+          <div>
+            <strong>30</strong>
+            <span>Completed Tasks</span>
+          </div>
+        </div>
+
+        <div className="projects-grid">
+          {projects.map((project) => (
+            <div
+              className="professional-project-card"
+              key={project.id}
+            >
+              <div className="project-card-header">
+                <div className="project-icon">
+                  {project.name
+                    .charAt(0)
+                    .toUpperCase()}
+                </div>
+
+                <span
+                  className={`project-status ${project.statusClass}`}
+                >
+                  {project.status}
+                </span>
+              </div>
+
               <h2>{project.name}</h2>
 
               <p>{project.description}</p>
 
-              <div className="project-info">
-                <span>
-                  {project.completed}/{project.tasks} Tasks
-                </span>
+              <div className="project-progress-info">
+                <span>Progress</span>
 
-                <strong>{progress}%</strong>
+                <strong>
+                  {project.progress}%
+                </strong>
               </div>
 
-              <div className="progress-bar">
-                <div
-                  className="progress-fill"
-                  style={{ width: `${progress}%` }}
-                />
+              <div className="project-progress-bar">
+                <span
+                  style={{
+                    width: `${project.progress}%`,
+                  }}
+                ></span>
               </div>
 
-              <Link
-                to={`/projects/${project.id}`}
-                className="project-button"
+              <div className="project-stats">
+                <div>
+                  <strong>{project.tasks}</strong>
+                  <span>Tasks</span>
+                </div>
+
+                <div>
+                  <strong>
+                    {project.completed}
+                  </strong>
+                  <span>Done</span>
+                </div>
+
+                <div>
+                  <strong>{project.members}</strong>
+                  <span>Members</span>
+                </div>
+              </div>
+
+              <button
+                className="view-project-button"
+                onClick={() =>
+                  navigate(
+                    `/projects/${project.id}`
+                  )
+                }
               >
                 View Project
-              </Link>
+                <span>→</span>
+              </button>
             </div>
-          );
-        })}
-      </div>
+          ))}
+        </div>
+      </main>
     </div>
   );
 }
