@@ -1,167 +1,275 @@
-<<<<<<< HEAD
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
-=======
 # Taskora
 
 ### Smart Work. Simple Progress.
 
-Taskora is a modern React-based task and project management SPA designed to help users manage tasks, projects, and team members from a single workspace.
+Taskora is a modern React-based task management application developed as part of the DigiHust Frontend Development Internship Phase 3 assignment.
 
-The project was developed as part of the DigiHust Frontend Development Internship, Phase 3, focusing on advanced React engineering, state management, routing, custom hooks, performance optimization, and production-ready architecture.
+The main purpose of the project is to demonstrate advanced React concepts such as global state management, protected routing, custom hooks, dynamic routes, code splitting, reusable components, localStorage synchronization, and performance-focused development.
 
----
+## Live Demo
 
-## 🚀 Features
+**Live Application:**
+https://taskora-khan-2614.vercel.app/
 
-### Authentication
-- User login interface
-- Global authentication state using Redux Toolkit
-- Authentication persistence using localStorage
-- Protected application routes
-- Automatic redirect for unauthenticated users
-- Logout functionality
+## GitHub Repository
 
-### Dashboard
-- Personalized dashboard
-- User profile information
-- Task statistics
-- Project progress overview
-- Recent activity
-- Modern responsive UI
-
-### Task Management
-- Create and manage tasks
-- Mark tasks as completed or pending
-- Task priority indicators
-- Task descriptions
-- Task status tracking
-- Persistent task data using localStorage
-- Reusable `TaskCard` component
-
-### Project Management
-- Project listing
-- Project details page
-- Dynamic project routes
-- Project progress information
-- Project statistics
-- Task distribution by project
-
-### Team Management
-- Team members fetched from an external API
-- Team member profiles
-- Company information
-- Loading skeletons
-- API error handling
-
-### Navigation
-- React Router
-- Protected routes
-- Dynamic route parameters
-- Nested routing architecture
-- Navigation between dashboard sections
-- Back navigation
-
-### Performance
-- React.lazy for code splitting
-- Suspense loading states
-- React.memo for component optimization
-- Reusable custom hooks
-- LocalStorage persistence
-- Optimized component structure
-
-### Error Handling
-- Global Error Boundary
-- API error states
-- Loading states
-- Fallback UI
-- Retry functionality
-
-### Responsive Design
-- Responsive dashboard
-- Mobile-friendly layouts
-- Responsive task cards
-- Responsive team and project grids
-- Modern glassmorphism login interface
+**Source Code:**
+https://github.com/Absarkhan13/taskora
 
 ---
 
-## 🛠️ Technologies Used
+## Features
 
-| Technology | Purpose |
-|---|---|
-| React | Frontend UI |
-| React Router | Routing and navigation |
-| Redux Toolkit | Global state management |
-| React Redux | Connecting React with Redux |
-| Vite | Development and build tool |
-| Axios | HTTP requests |
-| Lucide React | Icons |
-| CSS3 | Styling and responsive design |
-| JSONPlaceholder | Demo API |
-| ESLint/Oxlint | Code quality |
+* User login and authentication state
+* Protected routes
+* Dashboard
+* Task management interface
+* Projects section
+* Dynamic project details pages
+* Team section
+* Redux Toolkit for global authentication state
+* LocalStorage synchronization
+* Custom React hooks
+* Debounced search functionality
+* Fetch API hook
+* Lazy loading with React.lazy
+* Suspense loading states
+* Error Boundary
+* Reusable components
+* Memoized TaskCard component
+* Responsive user interface
+* Vercel deployment
 
 ---
 
-## 📁 Project Structure
+## Technologies Used
+
+* React
+* React Router
+* Redux Toolkit
+* React Redux
+* JavaScript
+* Vite
+* Axios
+* Lucide React
+* CSS
+* Vercel
+
+---
+
+## Project Structure
 
 ```text
-taskora/
+src/
+├── components/
+│   ├── ErrorBoundary.jsx
+│   ├── PageHeader.jsx
+│   ├── PageLoader.jsx
+│   ├── Sidebar.jsx
+│   └── TaskCard.jsx
 │
-├── public/
+├── hooks/
+│   ├── useLocalStorage.js
+│   ├── useDebounce.js
+│   └── useFetch.js
 │
-├── src/
-│   │
-│   ├── components/
-│   │   ├── ErrorBoundary.jsx
-│   │   ├── PageHeader.jsx
-│   │   ├── PageLoader.jsx
-│   │   ├── Sidebar.jsx
-│   │   └── TaskCard.jsx
-│   │
-│   ├── hooks/
-│   │   ├── useDebounce.js
-│   │   ├── useFetch.js
-│   │   └── useLocalStorage.js
-│   │
-│   ├── pages/
-│   │   ├── Login.jsx
-│   │   ├── Dashboard.jsx
-│   │   ├── Tasks.jsx
-│   │   ├── Projects.jsx
-│   │   ├── ProjectDetails.jsx
-│   │   └── Team.jsx
-│   │
-│   ├── redux/
-│   │   ├── slices/
-│   │   │   └── authSlice.js
-│   │   └── store.js
-│   │
-│   ├── routes/
-│   │   ├── AppRoutes.jsx
-│   │   └── ProtectedRoute.jsx
-│   │
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
+├── pages/
+│   ├── Login.jsx
+│   ├── Dashboard.jsx
+│   ├── Tasks.jsx
+│   ├── Projects.jsx
+│   ├── ProjectDetails.jsx
+│   └── Team.jsx
 │
-├── .env.example
-├── .gitignore
-├── package.json
-├── package-lock.json
-└── README.md
->>>>>>> 9f8b8c79a72b6ed8bbc2ee0d4904d1080f2c4373
+├── redux/
+│   ├── slices/
+│   │   └── authSlice.js
+│   └── store.js
+│
+├── routes/
+│   ├── AppRoutes.jsx
+│   └── ProtectedRoute.jsx
+│
+├── App.jsx
+├── main.jsx
+└── index.css
+```
+
+---
+
+## State Management
+
+Redux Toolkit is used for global authentication state.
+
+The authentication state contains:
+
+* Current user
+* Authentication status
+* Login action
+* Logout action
+
+User authentication data is synchronized with browser localStorage so that the login state can persist after refreshing the page.
+
+---
+
+## Custom Hooks
+
+### useLocalStorage
+
+Used for storing and retrieving data from browser localStorage while keeping the React state synchronized.
+
+### useDebounce
+
+Used to delay rapidly changing input values and reduce unnecessary operations.
+
+### useFetch
+
+A reusable hook created for handling API requests and loading/error states.
+
+---
+
+## Routing
+
+React Router is used to manage application navigation.
+
+The project includes:
+
+* Login route
+* Dashboard route
+* Tasks route
+* Projects route
+* Dynamic project details route
+* Team route
+* Protected routes
+
+Example dynamic route:
+
+```text
+/projects/:projectId
+```
+
+Unauthenticated users are redirected to the login page.
+
+---
+
+## Performance Features
+
+The project includes several performance-focused techniques:
+
+* React.lazy for route-level code splitting
+* Suspense loading fallback
+* React.memo for reusable task cards
+* Debounced input handling
+* Reusable components
+* Lightweight UI structure
+* Lazy-loaded pages
+
+These techniques help reduce unnecessary rendering and improve the overall user experience.
+
+---
+
+## Error and Loading Handling
+
+The application includes:
+
+* Global Error Boundary
+* Page loading component
+* Suspense fallback
+* Authentication route protection
+* Loading states for asynchronous operations
+
+---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Absarkhan13/taskora.git
+```
+
+Move into the project directory:
+
+```bash
+cd taskora
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+The application will normally be available at:
+
+```text
+http://localhost:5173
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file if required.
+
+Example:
+
+```env
+VITE_API_URL=https://jsonplaceholder.typicode.com
+```
+
+A `.env.example` file is included in the project for reference.
+
+---
+
+## Production Build
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+To preview the production build:
+
+```bash
+npm run preview
+```
+
+---
+
+## Deployment
+
+The application is deployed using Vercel.
+
+**Production URL:**
+
+https://taskora-khan-2614.vercel.app/
+
+Before submitting the project, the production URL should be tested in an incognito/private browser window to make sure the application itself loads without requiring Vercel authentication.
+
+---
+
+## Student Information
+
+**Name:** Muhammad Absar Khan
+
+**Assignment:** DigiHust Frontend Development Internship - Phase 3
+
+**Assignment Number:** A03
+
+**Project:** Taskora
+
+---
+
+## Conclusion
+
+Taskora was developed to demonstrate practical knowledge of modern React development. The project focuses on reusable components, global state management, routing, authentication flow, custom hooks, performance optimization, and deployment.
+
+The project also helped me understand how different React concepts work together in a complete single-page application.
